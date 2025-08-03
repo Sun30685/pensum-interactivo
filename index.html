@@ -1,121 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pensum Interactivo Administración</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pensum Interactivo - Áreas de Estudio</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Pensum Administración Uniandes</h1>
-  <div class="container">
-    <!-- Semestres 1 al 8 -->
 
-    <div class="semester">
-      <h2>Semestre 1</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 1A">Curso 1A</div>
-        <div class="course" data-name="Curso 1B">Curso 1B</div>
-        <div class="course" data-name="Curso 1C">Curso 1C</div>
-        <div class="course" data-name="Curso 1D">Curso 1D</div>
-        <div class="course" data-name="Curso 1E">Curso 1E</div>
-      </div>
+    <div class="header-container">
+        <div class="logo">
+            </div>
+        <div class="title-section">
+            <h1>Áreas de Estudio</h1>
+            <p>Click sobre la materia que deseas profundizar</p>
+        </div>
     </div>
 
+    <div class="pensum-container">
+        <div class="semestre">
+            <h2>Semestre 1</h2>
+            <div class="materia azul" data-materia-id="probabilidad-estadistica-1">Probabilidad y Estadística</div>
+            <div class="materia verde" data-materia-id="fundamentos-mercadeo">Fundamentos de Mercadeo</div>
+            <div class="materia gris" data-materia-id="introduccion-microeconomia">Introducción a la Microeconomía</div>
+            <div class="materia amarillo" data-materia-id="teoria-contable">Teoría Contable</div>
+        </div>
 
-    <div class="semester">
-      <h2>Semestre 2</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 2A">Curso 2A</div>
-        <div class="course" data-name="Curso 2B">Curso 2B</div>
-        <div class="course" data-name="Curso 2C">Curso 2C</div>
-        <div class="course" data-name="Curso 2D">Curso 2D</div>
-        <div class="course" data-name="Curso 2E">Curso 2E</div>
-      </div>
+        <div class="semestre">
+            <h2>Semestre 2</h2>
+            <div class="materia azul" data-materia-id="analisis-datos-hoja-calculo">Análisis de datos con Hoja de Cálculo</div>
+            <div class="materia verde" data-materia-id="introduccion-macroeconomia">Introducción a la Macroeconomía</div>
+            <div class="materia gris" data-materia-id="costos-produccion">Costos y Producción</div>
+            <div class="materia amarillo" data-materia-id="contabilidad-gerencial">Contabilidad Gerencial</div>
+        </div>
+
+        <div class="semestre">
+            <h2>Semestre 3</h2>
+            <div class="materia azul" data-materia-id="probabilidad-estadistica-2">Probabilidad y Estadística</div>
+            <div class="materia naranja" data-materia-id="contabilidad-financiera">Contabilidad Financiera</div>
+            <div class="materia verde" data-materia-id="investigacion-mercados-1">Investigación de Mercados I</div>
+            <div class="materia amarillo" data-materia-id="analisis-financiero">Análisis Financiero</div>
+        </div>
+
+        <div class="semestre">
+            <h2>Semestre 4</h2>
+            <div class="materia azul" data-materia-id="modelos-matematicos">Modelos Matemáticos</div>
+            <div class="materia naranja" data-materia-id="analisis-externo-economico">Análisis Externo Económico</div>
+            <div class="materia verde" data-materia-id="investigacion-mercados-2">Investigación de Mercados II</div>
+            <div class="materia amarillo" data-materia-id="planificacion-financiera">Planificación Financiera</div>
+        </div>
+
+        <div class="semestre">
+            <h2>Semestre 5</h2>
+            <div class="materia azul" data-materia-id="principios-optimizacion">Principios de Optimización</div>
+            <div class="materia naranja" data-materia-id="analisis-estrategico">Análisis Estratégico</div>
+            <div class="materia verde" data-materia-id="mercadeo-digital">Mercadeo Digital</div>
+            <div class="materia amarillo" data-materia-id="gerencia-inversiones">Gerencia de Inversiones</div>
+        </div>
+
+        <div class="semestre">
+            <h2>Semestre 6</h2>
+            <div class="materia azul" data-materia-id="automatizacion-procesos">Automatización y Desarrollo Personal</div>
+            <div class="materia morado" data-materia-id="operaciones-logistica">Operaciones y Logística</div>
+            <div class="materia verde" data-materia-id="comercializacion-productos">Comercialización de Productos</div>
+            <div class="materia gris" data-materia-id="introduccion-macroeconomia-2">Introducción a la Macroeconomía</div>
+        </div>
+
+        <div class="semestre">
+            <h2>Semestre 7</h2>
+            <div class="materia azul" data-materia-id="estrategias-organizacionales">Estrategias Organizacionales</div>
+            <div class="materia morado" data-materia-id="sistemas-informacion-gerencial">Sistemas de Información Gerencial</div>
+            <div class="materia verde" data-materia-id="fundamentos-derecho-laboral">Fundamentos del Derecho Laboral</div>
+            <div class="materia gris" data-materia-id="gestion-proyectos">Gestión de Proyectos</div>
+        </div>
+
+        <div class="semestre">
+            <h2>Semestre 8</h2>
+            <div class="materia azul" data-materia-id="gestion-proyectos-2">Gestión de Proyectos II</div>
+            <div class="materia morado" data-materia-id="practicas-profesionales">Prácticas Profesionales</div>
+            <div class="materia verde" data-materia-id="legislacion-tributaria">Legislación Tributaria</div>
+            <div class="materia gris" data-materia-id="estrategias-marketing-digital">Estrategias de Marketing Digital</div>
+        </div>
     </div>
 
-
-    <div class="semester">
-      <h2>Semestre 3</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 3A">Curso 3A</div>
-        <div class="course" data-name="Curso 3B">Curso 3B</div>
-        <div class="course" data-name="Curso 3C">Curso 3C</div>
-        <div class="course" data-name="Curso 3D">Curso 3D</div>
-        <div class="course" data-name="Curso 3E">Curso 3E</div>
-      </div>
+    <div id="modal-info" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-titulo"></h3>
+            <p id="modal-descripcion"></p>
+            <div id="modal-requisitos"></div>
+        </div>
     </div>
 
-
-    <div class="semester">
-      <h2>Semestre 4</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 4A">Curso 4A</div>
-        <div class="course" data-name="Curso 4B">Curso 4B</div>
-        <div class="course" data-name="Curso 4C">Curso 4C</div>
-        <div class="course" data-name="Curso 4D">Curso 4D</div>
-        <div class="course" data-name="Curso 4E">Curso 4E</div>
-      </div>
-    </div>
-
-
-    <div class="semester">
-      <h2>Semestre 5</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 5A">Curso 5A</div>
-        <div class="course" data-name="Curso 5B">Curso 5B</div>
-        <div class="course" data-name="Curso 5C">Curso 5C</div>
-        <div class="course" data-name="Curso 5D">Curso 5D</div>
-        <div class="course" data-name="Curso 5E">Curso 5E</div>
-      </div>
-    </div>
-
-
-    <div class="semester">
-      <h2>Semestre 6</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 6A">Curso 6A</div>
-        <div class="course" data-name="Curso 6B">Curso 6B</div>
-        <div class="course" data-name="Curso 6C">Curso 6C</div>
-        <div class="course" data-name="Curso 6D">Curso 6D</div>
-        <div class="course" data-name="Curso 6E">Curso 6E</div>
-      </div>
-    </div>
-
-
-    <div class="semester">
-      <h2>Semestre 7</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 7A">Curso 7A</div>
-        <div class="course" data-name="Curso 7B">Curso 7B</div>
-        <div class="course" data-name="Curso 7C">Curso 7C</div>
-        <div class="course" data-name="Curso 7D">Curso 7D</div>
-        <div class="course" data-name="Curso 7E">Curso 7E</div>
-      </div>
-    </div>
-
-
-    <div class="semester">
-      <h2>Semestre 8</h2>
-      <div class="courses">
-        <div class="course" data-name="Curso 8A">Curso 8A</div>
-        <div class="course" data-name="Curso 8B">Curso 8B</div>
-        <div class="course" data-name="Curso 8C">Curso 8C</div>
-        <div class="course" data-name="Curso 8D">Curso 8D</div>
-        <div class="course" data-name="Curso 8E">Curso 8E</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="close">&times;</span>
-      <h2 id="modal-title"></h2>
-      <p id="modal-description"></p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
