@@ -1,0 +1,162 @@
+{
+  "probabilidad-estadistica-1": {
+    "titulo": "Probabilidad y Estadística",
+    "descripcion": "Estudio de las técnicas para la recolección, organización, y análisis de datos, incluyendo conceptos de probabilidad, variables aleatorias y distribuciones.",
+    "requisitos": "Ninguno"
+  },
+  "fundamentos-mercadeo": {
+    "titulo": "Fundamentos de Mercadeo",
+    "descripcion": "Análisis de los principios básicos del mercadeo, el comportamiento del consumidor y la segmentación del mercado.",
+    "requisitos": "Ninguno"
+  },
+  "introduccion-microeconomia": {
+    "titulo": "Introducción a la Microeconomía",
+    "descripcion": "Estudio de las decisiones económicas de individuos y empresas, y cómo interactúan en los mercados.",
+    "requisitos": "Ninguno"
+  },
+  "teoria-contable": {
+    "titulo": "Teoría Contable",
+    "descripcion": "Conceptos fundamentales de la contabilidad, el ciclo contable y la preparación de estados financieros básicos.",
+    "requisitos": "Ninguno"
+  },
+  "analisis-datos-hoja-calculo": {
+    "titulo": "Análisis de Datos con Hoja de Cálculo",
+    "descripcion": "Manejo avanzado de herramientas como Excel para análisis de datos, funciones estadísticas, tablas dinámicas y macros.",
+    "requisitos": "Probabilidad y Estadística"
+  },
+  "introduccion-macroeconomia": {
+    "titulo": "Introducción a la Macroeconomía",
+    "descripcion": "Estudio de la economía en su conjunto, analizando variables como el PIB, la inflación, el desempleo y las políticas fiscales y monetarias.",
+    "requisitos": "Introducción a la Microeconomía"
+  },
+  "costos-produccion": {
+    "titulo": "Costos y Producción",
+    "descripcion": "Análisis de los diferentes tipos de costos en una empresa, y cómo se relacionan con la toma de decisiones de producción.",
+    "requisitos": "Teoría Contable"
+  },
+  "contabilidad-gerencial": {
+    "titulo": "Contabilidad Gerencial",
+    "descripcion": "Aplicación de la contabilidad para la toma de decisiones internas en la empresa, incluyendo presupuestos y control de gestión.",
+    "requisitos": "Teoría Contable"
+  },
+  "probabilidad-estadistica-2": {
+    "titulo": "Probabilidad y Estadística II",
+    "descripcion": "Continuación de los conceptos de probabilidad y estadística, enfocándose en la inferencia estadística, pruebas de hipótesis y regresión.",
+    "requisitos": "Probabilidad y Estadística"
+  },
+  "contabilidad-financiera": {
+    "titulo": "Contabilidad Financiera",
+    "descripcion": "Normas y principios para la preparación de estados financieros para usuarios externos, como inversionistas y acreedores.",
+    "requisitos": "Contabilidad Gerencial"
+  },
+  "investigacion-mercados-1": {
+    "titulo": "Investigación de Mercados I",
+    "descripcion": "Metodologías para la investigación de mercados, incluyendo el diseño de encuestas y la recolección de datos primarios y secundarios.",
+    "requisitos": "Fundamentos de Mercadeo"
+  },
+  "analisis-financiero": {
+    "titulo": "Análisis Financiero",
+    "descripcion": "Herramientas para interpretar estados financieros y evaluar la salud y el desempeño de una empresa.",
+    "requisitos": "Contabilidad Financiera"
+  },
+  "modelos-matematicos": {
+    "titulo": "Modelos Matemáticos",
+    "descripcion": "Aplicación de modelos matemáticos para resolver problemas en la toma de decisiones gerenciales y económicas.",
+    "requisitos": "Probabilidad y Estadística II"
+  },
+  "analisis-externo-economico": {
+    "titulo": "Análisis Externo Económico",
+    "descripcion": "Evaluación del entorno macroeconómico y su impacto en las estrategias empresariales.",
+    "requisitos": "Introducción a la Macroeconomía"
+  },
+  "investigacion-mercados-2": {
+    "titulo": "Investigación de Mercados II",
+    "descripcion": "Aplicación de técnicas avanzadas de investigación, como análisis de datos cualitativos y cuantitativos.",
+    "requisitos": "Investigación de Mercados I"
+  },
+  "planificacion-financiera": {
+    "titulo": "Planificación Financiera",
+    "descripcion": "Elaboración de planes financieros a corto y largo plazo para optimizar los recursos de la empresa.",
+    "requisitos": "Análisis Financiero"
+  },
+  "principios-optimizacion": {
+    "titulo": "Principios de Optimización",
+    "descripcion": "Técnicas de optimización para la mejora de procesos y la asignación de recursos en la empresa.",
+    "requisitos": "Modelos Matemáticos"
+  },
+  "analisis-estrategico": {
+    "titulo": "Análisis Estratégico",
+    "descripcion": "Desarrollo de estrategias competitivas para posicionar a la empresa en el mercado.",
+    "requisitos": "Análisis Externo Económico"
+  },
+  "mercadeo-digital": {
+    "titulo": "Mercadeo Digital",
+    "descripcion": "Estrategias de mercadeo en entornos digitales, incluyendo SEO, SEM, y marketing de contenidos.",
+    "requisitos": "Investigación de Mercados II"
+  },
+  "gerencia-inversiones": {
+    "titulo": "Gerencia de Inversiones",
+    "descripcion": "Análisis y gestión de portafolios de inversión, incluyendo la evaluación de riesgos y retornos.",
+    "requisitos": "Planificación Financiera"
+  },
+  "automatizacion-procesos": {
+    "titulo": "Automatización y Desarrollo Personal",
+    "descripcion": "Uso de tecnología para automatizar procesos de negocio y desarrollo de habilidades personales para la gestión del cambio.",
+    "requisitos": "Principios de Optimización"
+  },
+  "operaciones-logistica": {
+    "titulo": "Operaciones y Logística",
+    "descripcion": "Gestión de la cadena de suministro, desde la adquisición de materias primas hasta la entrega del producto final.",
+    "requisitos": "Principios de Optimización"
+  },
+  "comercializacion-productos": {
+    "titulo": "Comercialización de Productos",
+    "descripcion": "Técnicas y estrategias para la distribución y venta de productos en diferentes mercados.",
+    "requisitos": "Mercadeo Digital"
+  },
+  "introduccion-macroeconomia-2": {
+    "titulo": "Introducción a la Macroeconomía II",
+    "descripcion": "Continuación del estudio de la macroeconomía, profundizando en políticas económicas y ciclos de negocio.",
+    "requisitos": "Introducción a la Macroeconomía"
+  },
+  "estrategias-organizacionales": {
+    "titulo": "Estrategias Organizacionales",
+    "descripcion": "Diseño y ejecución de estrategias a nivel corporativo, de negocio y funcional.",
+    "requisitos": "Análisis Estratégico"
+  },
+  "sistemas-informacion-gerencial": {
+    "titulo": "Sistemas de Información Gerencial",
+    "descripcion": "Uso de sistemas de información para apoyar la toma de decisiones en la gestión de una empresa.",
+    "requisitos": "Operaciones y Logística"
+  },
+  "fundamentos-derecho-laboral": {
+    "titulo": "Fundamentos del Derecho Laboral",
+    "descripcion": "Marco legal que rige las relaciones laborales, contratos de trabajo y normativas de seguridad social.",
+    "requisitos": "Ninguno"
+  },
+  "gestion-proyectos": {
+    "titulo": "Gestión de Proyectos",
+    "descripcion": "Metodologías para la planificación, ejecución y seguimiento de proyectos, asegurando su éxito.",
+    "requisitos": "Automatización y Desarrollo Personal"
+  },
+  "gestion-proyectos-2": {
+    "titulo": "Gestión de Proyectos II",
+    "descripcion": "Profundización en técnicas avanzadas de gestión de proyectos, incluyendo metodologías ágiles y gestión de riesgos.",
+    "requisitos": "Gestión de Proyectos"
+  },
+  "practicas-profesionales": {
+    "titulo": "Prácticas Profesionales",
+    "descripcion": "Aplicación práctica de los conocimientos adquiridos en un entorno laboral real.",
+    "requisitos": "Haber completado los semestres anteriores"
+  },
+  "legislacion-tributaria": {
+    "titulo": "Legislación Tributaria",
+    "descripcion": "Estudio de las leyes y regulaciones fiscales que afectan a las empresas y a los individuos.",
+    "requisitos": "Análisis Financiero"
+  },
+  "estrategias-marketing-digital": {
+    "titulo": "Estrategias de Marketing Digital",
+    "descripcion": "Desarrollo de planes de marketing digital integrales, incluyendo redes sociales, email marketing y analítica web.",
+    "requisitos": "Mercadeo Digital"
+  }
+}
