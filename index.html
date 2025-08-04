@@ -3,71 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pensum Interactivo - Áreas de Estudio</title>
+    <title>Pensum Interactivo</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <div class="header-container">
         <div class="title-section">
-            <h1 class="header-title">Áreas de Estudio</h1>
-            <p class="header-subtitle">Click sobre la materia para marcar como completada. Click derecho para ver detalles.</p>
+            <h1 class="header-title">Pensum de Estudios</h1>
+            <p class="header-subtitle">Clic izquierdo para marcar una materia. Clic derecho para ver los detalles.</p>
         </div>
     </div>
 
     <div class="pensum-container">
-        <h2 class="semestre-titulo">Semestre 1</h2>
-        <h2 class="semestre-titulo">Semestre 2</h2>
-        <h2 class="semestre-titulo">Semestre 3</h2>
-        <h2 class="semestre-titulo">Semestre 4</h2>
-        <h2 class="semestre-titulo">Semestre 5</h2>
-        <h2 class="semestre-titulo">Semestre 6</h2>
-        <h2 class="semestre-titulo">Semestre 7</h2>
-        <h2 class="semestre-titulo">Semestre 8</h2>
+        <div class="semestre" data-semestre="1">
+            <h2 class="semestre-titulo">Semestre 1 (16 créditos)</h2>
+            <div class="materia" data-id="ADMI1101">Fundamentos de Administración <br> <span class="materia-codigo">ADMI1101</span></div>
+            <div class="materia" data-id="ADMI1201">Fundamentos de Mercado <br> <span class="materia-codigo">ADMI1201</span></div>
+            <div class="materia" data-id="ECON1101">Introducción a la Microeconomía <br> <span class="materia-codigo">ECON1101</span></div>
+            <div class="materia" data-id="MATI1101">Cálculo Diferencial e Integral <br> <span class="materia-codigo">MATI1101</span></div>
+            <div class="materia" data-id="ESCR1011">Escritura Univ. I <br> <span class="materia-codigo">ESCR1011</span></div>
+            <div class="materia" data-id="DEIN1001">Constitución y Democracia <br> <span class="materia-codigo">DEIN1001</span></div>
+        </div>
 
-        <div class="materia azul" data-id="probabilidad-y-estadistica-1">Probabilidad y Estadística</div>
-        <div class="materia azul" data-id="analisis-datos-con-hoja-de-calculo">Análisis de datos con Hoja de Cálculo</div>
-        <div class="materia azul" data-id="probabilidad-y-estadistica-2">Probabilidad y Estadística</div>
-        <div class="materia azul" data-id="modelos-matematicos">Modelos Matemáticos</div>
-        <div class="materia azul" data-id="principios-de-optimizacion">Principios de Optimización</div>
-        <div class="materia azul" data-id="automatizacion-y-desarrollo-personal">Automatización y Desarrollo Personal</div>
-        <div class="materia azul" data-id="estrategias-organizacionales">Estrategias Organizacionales</div>
-        <div class="materia azul" data-id="gestion-de-proyectos-2">Gestión de Proyectos II</div>
+        <div class="semestre" data-semestre="2">
+            <h2 class="semestre-titulo">Semestre 2 (18 créditos)</h2>
+            <div class="materia" data-id="ADMI1110">Historia del Desarrollo Empresarial Colombiano <br> <span class="materia-codigo">ADMI1110</span></div>
+            <div class="materia" data-id="ADMI2501">Análisis de Datos con Hojas de Cálculo <br> <span class="materia-codigo">ADMI2501</span></div>
+            <div class="materia" data-id="MATI1201">Álgebra Lineal y Cálculo 3 <br> <span class="materia-codigo">MATI1201</span></div>
+            <div class="materia" data-id="ESCR1021">Escritura Univ. II <br> <span class="materia-codigo">ESCR1021</span></div>
+            <div class="materia requisito" data-id="CBU1">CBU 1</div>
+            <div class="materia requisito" data-id="CBU2">CBU 2</div>
+        </div>
 
-        <div class="materia naranja" data-id="contabilidad-gerencial-1">Contabilidad Gerencial</div>
-        <div class="materia naranja" data-id="contabilidad-gerencial-2">Contabilidad Gerencial</div>
-        <div class="materia naranja" data-id="contabilidad-financiera">Contabilidad Financiera</div>
-        <div class="materia naranja" data-id="analisis-externo-economico">Análisis Externo Económico</div>
-        <div class="materia naranja" data-id="estrategia">Estrategia</div>
-        <div class="materia morado" data-id="operaciones-y-logistica">Operaciones y Logística</div>
-        <div class="materia morado" data-id="sistemas-de-informacion-gerencial">Sistemas de Información Gerencial</div>
-        <div class="materia morado" data-id="practicas-profesionales">Prácticas Profesionales</div>
+        <div class="semestre" data-semestre="3">
+            <h2 class="semestre-titulo">Semestre 3 (17 créditos)</h2>
+            <div class="materia" data-id="MATI2101">Probabilidad y Estadística <br> <span class="materia-codigo">MATI2101</span></div>
+            <div class="materia" data-id="ADMI2001">Organizaciones <br> <span class="materia-codigo">ADMI2001</span></div>
+            <div class="materia" data-id="ADMI2000">Proyecto Aplicado Opción <br> <span class="materia-codigo">ADMI2000</span></div>
+            <div class="materia" data-id="ADMI2201">Contabilidad Financiera <br> <span class="materia-codigo">ADMI2201</span></div>
+            <div class="materia" data-id="ADMI2601">Servicios Ecosistémicos <br> <span class="materia-codigo">ADMI2601</span></div>
+            <div class="materia requisito" data-id="CBU3">CBU 3</div>
+            <div class="materia requisito" data-id="REQ-INGLES">Requisito Lectura Inglés</div>
+        </div>
 
-        <div class="materia verde" data-id="fundamentos-de-mercadeo">Fundamentos de Mercadeo</div>
-        <div class="materia verde" data-id="investigacion-de-mercado">Investigación de Mercado</div>
-        <div class="materia verde" data-id="mercadeo-digital">Mercadeo Digital</div>
-        <div class="materia verde" data-id="comercializacion-de-productos">Comercialización de Productos</div>
-        <div class="materia verde" data-id="fundamentos-del-derecho-de-los-negocios">Fundamentos del Derecho de los Negocios</div>
-        <div class="materia verde" data-id="legislacion-tributaria">Legislación Tributaria</div>
-        <div class="materia verde" data-id="analisis-financiero-1">Análisis Financiero</div>
-        <div class="materia verde" data-id="analisis-financiero-2">Análisis Financiero</div>
+        <div class="semestre" data-semestre="4">
+            <h2 class="semestre-titulo">Semestre 4 (17 créditos)</h2>
+            <div class="materia" data-id="ADMI2502">Modelos Multivariados <br> <span class="materia-codigo">ADMI2502</span></div>
+            <div class="materia" data-id="ADMI2503">Visualización de Datos <br> <span class="materia-codigo">ADMI2503</span></div>
+            <div class="materia" data-id="ADMI1112">Análisis del Entorno Colombiano <br> <span class="materia-codigo">ADMI1112</span></div>
+            <div class="materia" data-id="ADMI2301">Taller de Creatividad <br> <span class="materia-codigo">ADMI2301</span></div>
+            <div class="materia" data-id="ADMI2202">Planeación Financiera <br> <span class="materia-codigo">ADMI2202</span></div>
+            <div class="materia" data-id="ADMI2402">Investigación de Mercados <br> <span class="materia-codigo">ADMI2402</span></div>
+            <div class="materia requisito" data-id="CBU4">CBU 4</div>
+            <div class="materia requisito" data-id="CLE1">CLE 1</div>
+        </div>
 
-        <div class="materia gris" data-id="historia-del-pensamiento-economico">Historia del Pensamiento Económico</div>
-        <div class="materia gris" data-id="introduccion-a-la-macroeconomia">Introducción a la Macroeconomía</div>
-        <div class="materia gris" data-id="costos-y-produccion">Costos y Producción</div>
-        <div class="materia gris" data-id="gestion-de-proyectos-1">Gestión de Proyectos</div>
-        <div class="materia gris" data-id="gestion-de-proyectos-2-fila-4">Gestión de Proyectos II</div>
-        <div class="materia gris" data-id="etica-de-los-negocios">Ética de los Negocios</div>
-        <div class="materia gris" data-id="liderazgo">Liderazgo</div>
-        <div class="materia gris" data-id="electiva">Electiva</div>
+        <div class="semestre" data-semestre="5">
+            <h2 class="semestre-titulo">Semestre 5 (16 créditos)</h2>
+            <div class="materia" data-id="ADMI2504">Principios de Optimización y Simulación <br> <span class="materia-codigo">ADMI2504</span></div>
+            <div class="materia" data-id="ADMI2505">Minería de Datos <br> <span class="materia-codigo">ADMI2505</span></div>
+            <div class="materia" data-id="ADMI3101">Estrategia <br> <span class="materia-codigo">ADMI3101</span></div>
+            <div class="materia" data-id="ADMI3301">Emprendimiento e Innovación <br> <span class="materia-codigo">ADMI3301</span></div>
+            <div class="materia" data-id="ADMI1111">La Gestión de lo Público <br> <span class="materia-codigo">ADMI1111</span></div>
+            <div class="materia" data-id="ADMI2602">Gerencia de la Sostenibilidad <br> <span class="materia-codigo">ADMI2602</span></div>
+            <div class="materia" data-id="ECON1201">Introducción a la Macroeconomía <br> <span class="materia-codigo">ECON1201</span></div>
+        </div>
+
+        <div class="semestre" data-semestre="6">
+            <h2 class="semestre-titulo">Semestre 6 (17 créditos)</h2>
+            <div class="materia" data-id="ADMI3001">Autoconocimiento y Desarrollo Personal <br> <span class="materia-codigo">ADMI3001</span></div>
+            <div class="materia" data-id="ADMI3103">Negocios Internacionales <br> <span class="materia-codigo">ADMI3103</span></div>
+            <div class="materia" data-id="ADMI3303">Operaciones y Logística <br> <span class="materia-codigo">ADMI3303</span></div>
+            <div class="materia" data-id="ADMI3202">Decisiones de Inversión <br> <span class="materia-codigo">ADMI3202</span></div>
+            <div class="materia requisito" data-id="BOLSA-ELECTIVAS">Bolsa de Electivas</div>
+            <div class="materia" data-id="DERE1001">Fundamentos de Derecho de los Negocios <br> <span class="materia-codigo">DERE1001</span></div>
+            <div class="materia requisito" data-id="CBU5">CBU 5</div>
+            <div class="materia requisito" data-id="REQ-2DA-LENGUA">Requisito Segunda Lengua</div>
+        </div>
+
+        <div class="semestre" data-semestre="7">
+            <h2 class="semestre-titulo">Semestre 7 (16 créditos)</h2>
+            <div class="materia" data-id="ADMI3102">Consultoría <br> <span class="materia-codigo">ADMI3102/C</span></div>
+            <div class="materia" data-id="ADMI3501">Sistemas de Información Gerencial <br> <span class="materia-codigo">ADMI3501</span></div>
+            <div class="materia requisito" data-id="BOLSA-ELECTIVAS-2">Bolsa de Electivas</div>
+            <div class="materia requisito" data-id="REQ-INTERNACIONAL">Requisito Internacional</div>
+            <div class="materia requisito" data-id="CBU6">CBU 6</div>
+            <div class="materia requisito" data-id="CLE2">CLE 2</div>
+            <div class="materia requisito" data-id="CBU7">CBU 7</div>
+        </div>
+
+        <div class="semestre" data-semestre="8">
+            <h2 class="semestre-titulo">Semestre 8 (16 créditos)</h2>
+            <div class="materia" data-id="ADMI3822">Juego Gerencial <br> <span class="materia-codigo">ADMI3822</span></div>
+            <div class="materia requisito" data-id="SABER-PRO">SABER PRO</div>
+            <div class="materia requisito" data-id="ELECTIVA-1-6">Electivas 1-6</div>
+        </div>
     </div>
 
     <div id="modal-info" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h3 id="modal-titulo"></h3>
-            <p id="modal-descripcion"></p>
+            <p id="modal-codigo"></p>
+            <p id="modal-creditos"></p>
             <div id="modal-prerrequisitos"></div>
+            <div id="modal-correquisitos"></div>
         </div>
     </div>
 
