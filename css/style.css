@@ -7,70 +7,62 @@ body {
 }
 
 .header-container {
-    display: flex;
-    justify-content: flex-end; /* Alinea el título a la derecha */
-    align-items: center;
+    text-align: right;
     padding: 20px;
-    background: url('https://via.placeholder.com/1200x200') no-repeat center center/cover; /* Reemplazar con una imagen de fondo si la tienes */
-    background-color: #1a237e; /* Color de fondo oscuro como la imagen */
+    background-color: #1a237e;
     color: white;
     border-radius: 10px;
     margin-bottom: 20px;
-    height: 150px;
-    position: relative;
 }
 
-.title-section {
-    background-color: rgba(26, 35, 126, 0.7); /* Fondo semi-transparente para el texto */
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.title-section h1 {
+.header-title {
     font-size: 2.5em;
     margin: 0;
     font-weight: 300;
 }
 
-.title-section p {
+.header-subtitle {
     font-style: italic;
     font-size: 1.1em;
     margin: 10px 0 0;
 }
 
 .pensum-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px; /* Espacio entre semestres */
-    overflow-x: auto; /* Permite desplazamiento horizontal si hay muchos semestres */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.semestre {
-    flex: 1 1 200px; /* Tamaño base y permite crecer y encoger */
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.semestre-titulos {
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    display: contents;
 }
 
-.semestre h2 {
+.semestre-titulos h2 {
+    grid-row: 1; /* Todos los títulos están en la primera fila */
     text-align: center;
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 10px;
-    margin-top: 0;
+    font-size: 1.2em;
+    font-weight: bold;
     color: #4a4a4a;
 }
 
+.fila-carrera {
+    display: contents;
+}
+
 .materia {
-    padding: 12px;
-    margin: 8px 0;
+    padding: 15px;
+    margin-top: 15px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border 0.2s;
     font-size: 0.9em;
     font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .materia:hover {
@@ -80,15 +72,38 @@ body {
 
 /* Colores de los bloques de materia */
 .materia.azul { background-color: #007bff; }
+.materia.naranja { background-color: #fd7e14; }
 .materia.verde { background-color: #28a745; }
 .materia.gris { background-color: #6c757d; }
-.materia.amarillo { background-color: #ffc107; }
-.materia.naranja { background-color: #fd7e14; }
 .materia.morado { background-color: #6610f2; }
 
-/* Estilos del Modal (pop-up) */
+/* Nuevo estilo para materias completadas (tachadas) */
+.materia.completed {
+    background-color: #9e9e9e !important;
+    text-decoration: line-through;
+    opacity: 0.7;
+    cursor: default;
+    box-shadow: none;
+    pointer-events: none;
+}
+.materia.completed:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Nuevo estilo para materias disponibles */
+.materia.available {
+    border: 3px solid #28a745; /* Borde verde para resaltar */
+    box-shadow: 0 0 10px #28a745;
+}
+.materia.available:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 10px #28a745;
+}
+
+/* Estilos del Modal */
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -122,12 +137,6 @@ body {
     float: right;
     font-size: 28px;
     font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: #000;
-    text-decoration: none;
     cursor: pointer;
 }
 
