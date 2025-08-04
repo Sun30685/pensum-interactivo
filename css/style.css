@@ -7,7 +7,7 @@ body {
 }
 
 .header-container {
-    text-align: right;
+    text-align: center;
     padding: 20px;
     background-color: #1a237e;
     color: white;
@@ -30,39 +30,30 @@ body {
 .pensum-container {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    gap: 15px;
+    grid-template-rows: auto repeat(4, 1fr);
+    gap: 10px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.semestre-titulos {
-    grid-column: 1 / -1; /* Ocupa todas las columnas */
-    display: contents;
-}
-
-.semestre-titulos h2 {
-    grid-row: 1; /* Todos los títulos están en la primera fila */
+.semestre-titulo {
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
     color: #4a4a4a;
-}
-
-.fila-carrera {
-    display: contents;
+    padding: 10px 0;
 }
 
 .materia {
-    padding: 15px;
-    margin-top: 15px;
+    padding: 15px 5px;
     color: white;
     border-radius: 5px;
-    cursor: pointer;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border 0.2s;
     font-size: 0.9em;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .materia:hover {
@@ -77,12 +68,11 @@ body {
 .materia.gris { background-color: #6c757d; }
 .materia.morado { background-color: #6610f2; }
 
-/* Nuevo estilo para materias completadas (tachadas) */
+/* Estilo para materias completadas (tachadas) */
 .materia.completed {
     background-color: #9e9e9e !important;
     text-decoration: line-through;
     opacity: 0.7;
-    cursor: default;
     box-shadow: none;
     pointer-events: none;
 }
@@ -91,14 +81,14 @@ body {
     box-shadow: none;
 }
 
-/* Nuevo estilo para materias disponibles */
+/* Estilo para materias disponibles (resaltadas) */
 .materia.available {
-    border: 3px solid #28a745; /* Borde verde para resaltar */
-    box-shadow: 0 0 10px #28a745;
+    border: 3px solid #ffc107; /* Borde amarillo para resaltar */
+    box-shadow: 0 0 10px #ffc107;
 }
 .materia.available:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 10px #28a745;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 10px #ffc107;
 }
 
 /* Estilos del Modal */
@@ -119,10 +109,9 @@ body {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 30px;
-    border: 1px solid #888;
-    width: 60%;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 60%;
     position: relative;
     animation: fadeIn 0.3s;
 }
