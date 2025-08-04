@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Selecciona todos los elementos de materia y el modal
     const materias = document.querySelectorAll('.materia');
     const modal = document.getElementById('modal-info');
     const modalTitulo = document.getElementById('modal-titulo');
@@ -8,52 +7,97 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.querySelector('.close-button');
 
     let datosPensum;
+    let completedSubjects = new Set(JSON.parse(localStorage.getItem('completedSubjects')) || []);
 
     // Carga los datos del archivo JSON
     fetch('data/materias.json')
-        .then(response => {
-            // Verifica que la respuesta sea exitosa
-            if (!response.ok) {
-                throw new Error('Error al cargar el archivo JSON.');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             datosPensum = data;
-        })
-        .catch(error => {
-            console.error('No se pudieron cargar los datos del pensum:', error);
-            // Muestra un mensaje de error en la consola si el archivo no se encuentra
+            // Inicializa el estado del pensum
+            updatePensumState();
         });
 
-    // Añade un evento de clic a cada materia
-    materias.forEach(materia => {
-        materia.addEventListener('click', () => {
-            const materiaId = materia.dataset.materiaId;
+    // Función principal para actualizar el estado del pensum
+    function updatePensumState() {
+        materias.forEach(materia => {
+            const materiaId = materia.dataset.id;
             const info = datosPensum[materiaId];
 
-            if (info) {
-                // Rellena el modal con la información de la materia
-                modalTitulo.textContent = info.titulo;
-                modalDescripcion.textContent = info.descripcion;
-                modalRequisitos.innerHTML = `<strong>Requisitos:</strong> ${info.requisitos}`;
-                
-                // Muestra el modal
-                modal.style.display = 'block';
+            // 1. Aplica la clase 'completed' si está en el localStorage
+            if (completedSubjects.has(materiaId)) {
+                materia.classList.add('completed');
             } else {
-                console.error(`No se encontró la información para la materia con ID: ${materiaId}`);
+                materia.classList.remove('completed');
             }
+
+            // 2. Verifica y aplica la clase 'available'
+            if (info && info.prerrequisitos) {
+                const isAvailable = info.prerrequisitos.every(req => completedSubjects.has(req));
+                if (isAvailable && !completedSubjects.has(materiaId)) {
+                    materia.classList.add('available');
+                } else {
+                    materia.classList.remove('available');
+                }
+            } else if (!info.prerrequisitos && !completedSubjects.has(materiaId)) {
+                // Las materias sin prerrequisitos siempre están disponibles
+                materia.classList.add('available');
+            }
+        });
+    }
+
+    // Maneja el clic en las materias
+    materias.forEach(materia => {
+        materia.addEventListener('click', (e) => {
+            const materiaId = materia.dataset.id;
+            const info = datosPensum[materiaId];
+            
+            // Si la materia ya está completada, no hacer nada (se deshabilita con CSS)
+            if (completedSubjects.has(materiaId)) {
+                 return;
+            }
+
+            // Toggle para marcar como completada
+            completedSubjects.add(materiaId);
+            localStorage.setItem('completedSubjects', JSON.stringify(Array.from(completedSubjects)));
+
+            // Actualiza el estado visual del pensum
+            updatePensumState();
         });
     });
 
-    // Cierra el modal cuando se hace clic en el botón de cerrar
+    // Maneja el clic en el modal para mostrar detalles
+    materias.forEach(materia => {
+      // Usar un event listener diferente para el modal para que el clic no marque como completada
+      materia.addEventListener('contextmenu', (e) => {
+        e.preventDefault(); // Evita el menú contextual del navegador
+        const materiaId = materia.dataset.id;
+        const info = datosPensum[materiaId];
+
+        if (info) {
+          modalTitulo.textContent = info.titulo;
+          modalDescripcion.textContent = info.descripcion;
+          modalRequisitos.innerHTML = `<strong>Prerrequisitos:</strong> ${info.prerrequisitos && info.prerrequisitos.length > 0 ? info.prerrequisitos.map(req => datosPensum[req].titulo).join(', ') : 'Ninguno'}`;
+          modal.style.display = 'block';
+        }
+      });
+    });
+
+    // Cierra el modal con el botón
     closeButton.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 
-    // Cierra el modal si el usuario hace clic fuera de él
+    // Cierra el modal si el usuario hace clic fuera
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Cierra el modal con la tecla ESC
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
             modal.style.display = 'none';
         }
     });
