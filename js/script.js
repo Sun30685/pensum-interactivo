@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal-info');
     const modalTitulo = document.getElementById('modal-titulo');
     const modalDescripcion = document.getElementById('modal-descripcion');
-    const modalRequisitos = document.getElementById('modal-requisitos');
+    const modalPrerrequisitos = document.getElementById('modal-prerrequisitos');
     const closeButton = document.querySelector('.close-button');
 
     let datosPensum;
@@ -14,81 +14,79 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             datosPensum = data;
-            // Inicializa el estado del pensum
+            // Inicializa el estado del pensum al cargar la página
             updatePensumState();
         });
 
-    // Función principal para actualizar el estado del pensum
+    // Función principal para actualizar el estado visual del pensum
     function updatePensumState() {
         materias.forEach(materia => {
             const materiaId = materia.dataset.id;
             const info = datosPensum[materiaId];
 
-            // 1. Aplica la clase 'completed' si está en el localStorage
+            // 1. Marca como 'completed' si está en el localStorage
             if (completedSubjects.has(materiaId)) {
                 materia.classList.add('completed');
             } else {
                 materia.classList.remove('completed');
             }
 
-            // 2. Verifica y aplica la clase 'available'
-            if (info && info.prerrequisitos) {
+            // 2. Resalta como 'available' si los prerrequisitos se cumplen
+            if (info) {
                 const isAvailable = info.prerrequisitos.every(req => completedSubjects.has(req));
                 if (isAvailable && !completedSubjects.has(materiaId)) {
                     materia.classList.add('available');
                 } else {
                     materia.classList.remove('available');
                 }
-            } else if (!info.prerrequisitos && !completedSubjects.has(materiaId)) {
-                // Las materias sin prerrequisitos siempre están disponibles
-                materia.classList.add('available');
             }
         });
     }
 
-    // Maneja el clic en las materias
+    // Maneja el clic izquierdo para marcar/desmarcar
     materias.forEach(materia => {
-        materia.addEventListener('click', (e) => {
+        materia.addEventListener('click', () => {
             const materiaId = materia.dataset.id;
-            const info = datosPensum[materiaId];
             
-            // Si la materia ya está completada, no hacer nada (se deshabilita con CSS)
             if (completedSubjects.has(materiaId)) {
-                 return;
+                 completedSubjects.delete(materiaId);
+            } else {
+                completedSubjects.add(materiaId);
             }
-
-            // Toggle para marcar como completada
-            completedSubjects.add(materiaId);
             localStorage.setItem('completedSubjects', JSON.stringify(Array.from(completedSubjects)));
-
-            // Actualiza el estado visual del pensum
             updatePensumState();
         });
     });
 
-    // Maneja el clic en el modal para mostrar detalles
+    // Maneja el clic derecho para mostrar el modal de detalles
     materias.forEach(materia => {
-      // Usar un event listener diferente para el modal para que el clic no marque como completada
       materia.addEventListener('contextmenu', (e) => {
-        e.preventDefault(); // Evita el menú contextual del navegador
+        e.preventDefault(); // Evita el menú contextual por defecto
         const materiaId = materia.dataset.id;
         const info = datosPensum[materiaId];
 
         if (info) {
           modalTitulo.textContent = info.titulo;
           modalDescripcion.textContent = info.descripcion;
-          modalRequisitos.innerHTML = `<strong>Prerrequisitos:</strong> ${info.prerrequisitos && info.prerrequisitos.length > 0 ? info.prerrequisitos.map(req => datosPensum[req].titulo).join(', ') : 'Ninguno'}`;
+
+          let requisitosText = 'Ninguno';
+          if (info.prerrequisitos && info.prerrequisitos.length > 0) {
+              const nombresRequisitos = info.prerrequisitos.map(reqId => datosPensum[reqId]?.titulo || reqId);
+              requisitosText = nombresRequisitos.join(', ');
+          }
+          modalPrerrequisitos.innerHTML = `<strong>Prerrequisitos:</strong> ${requisitosText}`;
+
           modal.style.display = 'block';
         }
       });
     });
 
-    // Cierra el modal con el botón
+    // Cierra el modal con el botón de cierre
     closeButton.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 
-    // Cierra el modal si el usuario hace clic fuera
+    // Cierra el modal si se hace clic fuera del contenido
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             modal.style.display = 'none';
