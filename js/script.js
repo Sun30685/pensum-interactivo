@@ -1,121 +1,434 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const materias = document.querySelectorAll('.materia');
-    const modal = document.getElementById('modal-info');
-    const modalTitulo = document.getElementById('modal-titulo');
-    const modalCodigo = document.getElementById('modal-codigo');
-    const modalCreditos = document.getElementById('modal-creditos');
-    const modalPrerrequisitos = document.getElementById('modal-prerrequisitos');
-    const modalCorrequisitos = document.getElementById('modal-correquisitos');
-    const closeButton = document.querySelector('.close-button');
-
-    let datosPensum;
-    let completedSubjects = new Set(JSON.parse(localStorage.getItem('completedSubjects')) || []);
-
-    fetch('data/materias.json')
-        .then(response => response.json())
-        .then(data => {
-            datosPensum = data;
-            updatePensumState();
-        });
-
-    function updatePensumState() {
-        let totalCreditosAcumulados = 0;
-        
-        // Primero, calcula los créditos acumulados
-        completedSubjects.forEach(materiaId => {
-            const info = datosPensum[materiaId];
-            if (info && info.creditos) {
-                totalCreditosAcumulados += info.creditos;
-            }
-        });
-
-        // Luego, actualiza el estado visual de cada materia
-        materias.forEach(materia => {
-            const materiaId = materia.dataset.id;
-            const info = datosPensum[materiaId];
-
-            if (completedSubjects.has(materiaId)) {
-                materia.classList.add('completed');
-            } else {
-                materia.classList.remove('completed');
-            }
-
-            if (info) {
-                const prerrequisitosCumplidos = info.prerrequisitos.every(reqId => completedSubjects.has(reqId));
-                
-                let requisitosExtraCumplidos = true;
-                if (materiaId === 'ADMI3103') { // Negocios Internacionales
-                    requisitosExtraCumplidos = totalCreditosAcumulados >= 75;
-                }
-
-                if (prerrequisitosCumplidos && requisitosExtraCumplidos && !completedSubjects.has(materiaId)) {
-                    materia.classList.add('available');
-                } else {
-                    materia.classList.remove('available');
-                }
-            }
-        });
-    }
-
-    materias.forEach(materia => {
-        materia.addEventListener('click', () => {
-            const materiaId = materia.dataset.id;
-            const info = datosPensum[materiaId];
-            
-            // Si la materia no está en los datos o ya fue completada, no hacer nada
-            if (!info) return;
-
-            // Lógica para marcar/desmarcar
-            if (completedSubjects.has(materiaId)) {
-                 completedSubjects.delete(materiaId);
-            } else {
-                completedSubjects.add(materiaId);
-            }
-
-            localStorage.setItem('completedSubjects', JSON.stringify(Array.from(completedSubjects)));
-            updatePensumState();
-        });
-
-        materia.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            const materiaId = materia.dataset.id;
-            const info = datosPensum[materiaId];
-
-            if (info) {
-                modalTitulo.textContent = info.titulo;
-                modalCodigo.textContent = `Código: ${info.codigo || 'N/A'}`;
-                modalCreditos.textContent = `Créditos: ${info.creditos || 'N/A'}`;
-
-                let prerequisitosText = 'Ninguno';
-                if (info.prerrequisitos && info.prerrequisitos.length > 0) {
-                    prerequisitosText = info.prerrequisitos.map(reqId => datosPensum[reqId]?.titulo || reqId).join(', ');
-                }
-                modalPrerrequisitos.innerHTML = `<strong>Prerrequisitos:</strong> ${prerequisitosText}`;
-                
-                let correquisitosText = 'Ninguno';
-                if (info.correquisito && info.correquisito.length > 0) {
-                    correquisitosText = info.correquisito.map(reqId => datosPensum[reqId]?.titulo || reqId).join(', ');
-                }
-                modalCorrequisitos.innerHTML = `<strong>Correquisitos:</strong> ${correquisitosText}`;
-
-                modal.style.display = 'block';
-            }
-        });
-    });
-
-    closeButton.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-    window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
-            modal.style.display = 'none';
-        }
-    });
-});
+{
+  "ADMI1101": {
+    "titulo": "Fundamentos de Administración",
+    "codigo": "ADMI1101",
+    "creditos": 3,
+    "semestre": 1,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI1201": {
+    "titulo": "Fundamentos de Mercado",
+    "codigo": "ADMI1201",
+    "creditos": 3,
+    "semestre": 1,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ECON1101": {
+    "titulo": "Introducción a la Microeconomía",
+    "codigo": "ECON1101",
+    "creditos": 3,
+    "semestre": 1,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "MATI1101": {
+    "titulo": "Cálculo Diferencial e Integral",
+    "codigo": "MATI1101",
+    "creditos": 3,
+    "semestre": 1,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ESCR1011": {
+    "titulo": "Escritura Univ. I",
+    "codigo": "ESCR1011",
+    "creditos": 2,
+    "semestre": 1,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "DEIN1001": {
+    "titulo": "Constitución y Democracia",
+    "codigo": "DEIN1001",
+    "creditos": 2,
+    "semestre": 1,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI1110": {
+    "titulo": "Historia del Desarrollo Empresarial Colombiano",
+    "codigo": "ADMI1110",
+    "creditos": 3,
+    "semestre": 2,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2501": {
+    "titulo": "Análisis de Datos con Hojas de Cálculo",
+    "codigo": "ADMI2501",
+    "creditos": 3,
+    "semestre": 2,
+    "prerrequisitos": ["ADMI2500"],
+    "correquisito": []
+  },
+  "MATI1201": {
+    "titulo": "Álgebra Lineal y Cálculo 3",
+    "codigo": "MATI1201",
+    "creditos": 3,
+    "semestre": 2,
+    "prerrequisitos": ["MATI1101"],
+    "correquisito": []
+  },
+  "ESCR1021": {
+    "titulo": "Escritura Univ. II",
+    "codigo": "ESCR1021",
+    "creditos": 3,
+    "semestre": 2,
+    "prerrequisitos": ["ESCR1011"],
+    "correquisito": []
+  },
+  "CBU1": {
+    "titulo": "CBU 1",
+    "codigo": "CBU1",
+    "creditos": 3,
+    "semestre": 2,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "CBU2": {
+    "titulo": "CBU 2",
+    "codigo": "CBU2",
+    "creditos": 3,
+    "semestre": 2,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "MATI2101": {
+    "titulo": "Probabilidad y Estadística",
+    "codigo": "MATI2101",
+    "creditos": 3,
+    "semestre": 3,
+    "prerrequisitos": ["MATI1201"],
+    "correquisito": []
+  },
+  "ADMI2001": {
+    "titulo": "Organizaciones",
+    "codigo": "ADMI2001",
+    "creditos": 3,
+    "semestre": 3,
+    "prerrequisitos": ["ADMI1110"],
+    "correquisito": []
+  },
+  "ADMI2000": {
+    "titulo": "Proyecto Aplicado Opción",
+    "codigo": "ADMI2000",
+    "creditos": 3,
+    "semestre": 3,
+    "prerrequisitos": ["ADMI2001"],
+    "correquisito": []
+  },
+  "ADMI2201": {
+    "titulo": "Contabilidad Financiera",
+    "codigo": "ADMI2201",
+    "creditos": 3,
+    "semestre": 3,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2601": {
+    "titulo": "Servicios Ecosistémicos",
+    "codigo": "ADMI2601",
+    "creditos": 2,
+    "semestre": 3,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "CBU3": {
+    "titulo": "CBU 3",
+    "codigo": "CBU3",
+    "creditos": 3,
+    "semestre": 3,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "REQ-INGLES": {
+    "titulo": "Requisito Lectura Inglés",
+    "codigo": "REQ-INGLES",
+    "creditos": 0,
+    "semestre": 3,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2502": {
+    "titulo": "Modelos Multivariados",
+    "codigo": "ADMI2502",
+    "creditos": 3,
+    "semestre": 4,
+    "prerrequisitos": ["MATI2101", "ADMI2501"],
+    "correquisito": []
+  },
+  "ADMI2503": {
+    "titulo": "Visualización de Datos",
+    "codigo": "ADMI2503",
+    "creditos": 3,
+    "semestre": 4,
+    "prerrequisitos": ["ADMI2501"],
+    "correquisito": []
+  },
+  "ADMI1112": {
+    "titulo": "Análisis del Entorno Colombiano",
+    "codigo": "ADMI1112",
+    "creditos": 3,
+    "semestre": 4,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2301": {
+    "titulo": "Taller de Creatividad",
+    "codigo": "ADMI2301",
+    "creditos": 2,
+    "semestre": 4,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2202": {
+    "titulo": "Planeación Financiera",
+    "codigo": "ADMI2202",
+    "creditos": 3,
+    "semestre": 4,
+    "prerrequisitos": ["ADMI2201"],
+    "correquisito": []
+  },
+  "ADMI2402": {
+    "titulo": "Investigación de Mercados",
+    "codigo": "ADMI2402",
+    "creditos": 3,
+    "semestre": 4,
+    "prerrequisitos": ["ADMI1201", "MATI2101"],
+    "correquisito": []
+  },
+  "CBU4": {
+    "titulo": "CBU 4",
+    "codigo": "CBU4",
+    "creditos": 3,
+    "semestre": 4,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "CLE1": {
+    "titulo": "CLE 1",
+    "codigo": "CLE1",
+    "creditos": 0,
+    "semestre": 4,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2504": {
+    "titulo": "Principios de Optimización y Simulación",
+    "codigo": "ADMI2504",
+    "creditos": 3,
+    "semestre": 5,
+    "prerrequisitos": ["ADMI2502"],
+    "correquisito": []
+  },
+  "ADMI2505": {
+    "titulo": "Minería de Datos",
+    "codigo": "ADMI2505",
+    "creditos": 3,
+    "semestre": 5,
+    "prerrequisitos": ["ADMI2502", "ADMI2503"],
+    "correquisito": []
+  },
+  "ADMI3101": {
+    "titulo": "Estrategia",
+    "codigo": "ADMI3101",
+    "creditos": 3,
+    "semestre": 5,
+    "prerrequisitos": ["ADMI1112", "ADMI2301"],
+    "correquisito": []
+  },
+  "ADMI3301": {
+    "titulo": "Emprendimiento e Innovación",
+    "codigo": "ADMI3301",
+    "creditos": 3,
+    "semestre": 5,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI1111": {
+    "titulo": "La Gestión de lo Público",
+    "codigo": "ADMI1111",
+    "creditos": 2,
+    "semestre": 5,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2602": {
+    "titulo": "Gerencia de la Sostenibilidad",
+    "codigo": "ADMI2602",
+    "creditos": 2,
+    "semestre": 5,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ECON1201": {
+    "titulo": "Introducción a la Macroeconomía",
+    "codigo": "ECON1201",
+    "creditos": 3,
+    "semestre": 5,
+    "prerrequisitos": ["ECON1101"],
+    "correquisito": []
+  },
+  "ADMI3001": {
+    "titulo": "Autoconocimiento y Desarrollo Personal",
+    "codigo": "ADMI3001",
+    "creditos": 2,
+    "semestre": 6,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI3103": {
+    "titulo": "Negocios Internacionales",
+    "codigo": "ADMI3103",
+    "creditos": 3,
+    "semestre": 6,
+    "prerrequisitos": ["ADMI3101"],
+    "correquisito": []
+  },
+  "ADMI3303": {
+    "titulo": "Operaciones y Logística",
+    "codigo": "ADMI3303",
+    "creditos": 3,
+    "semestre": 6,
+    "prerrequisitos": ["MATI2101", "ADMI2502"],
+    "correquisito": []
+  },
+  "ADMI3202": {
+    "titulo": "Decisiones de Inversión",
+    "codigo": "ADMI3202",
+    "creditos": 3,
+    "semestre": 6,
+    "prerrequisitos": ["ADMI2202"],
+    "correquisito": []
+  },
+  "BOLSA-ELECTIVAS": {
+    "titulo": "Bolsa de Electivas",
+    "codigo": "BOLSA-ELECTIVAS",
+    "creditos": 3,
+    "semestre": 6,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "DERE1001": {
+    "titulo": "Fundamentos de Derecho de los Negocios",
+    "codigo": "DERE1001",
+    "creditos": 3,
+    "semestre": 6,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "CBU5": {
+    "titulo": "CBU 5",
+    "codigo": "CBU5",
+    "creditos": 0,
+    "semestre": 6,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "REQ-2DA-LENGUA": {
+    "titulo": "Requisito Segunda Lengua",
+    "codigo": "REQ-2DA-LENGUA",
+    "creditos": 0,
+    "semestre": 6,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI3102": {
+    "titulo": "Consultoría",
+    "codigo": "ADMI3102/C",
+    "creditos": 3,
+    "semestre": 7,
+    "prerrequisitos": ["ADMI3101"],
+    "correquisito": []
+  },
+  "ADMI3501": {
+    "titulo": "Sistemas de Información Gerencial",
+    "codigo": "ADMI3501",
+    "creditos": 3,
+    "semestre": 7,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "BOLSA-ELECTIVAS-2": {
+    "titulo": "Bolsa de Electivas",
+    "codigo": "BOLSA-ELECTIVAS-2",
+    "creditos": 3,
+    "semestre": 7,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "REQ-INTERNACIONAL": {
+    "titulo": "Requisito Internacional",
+    "codigo": "REQ-INTERNACIONAL",
+    "creditos": 0,
+    "semestre": 7,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "CBU6": {
+    "titulo": "CBU 6",
+    "codigo": "CBU6",
+    "creditos": 3,
+    "semestre": 7,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "CLE2": {
+    "titulo": "CLE 2",
+    "codigo": "CLE2",
+    "creditos": 0,
+    "semestre": 7,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "CBU7": {
+    "titulo": "CBU 7",
+    "codigo": "CBU7",
+    "creditos": 3,
+    "semestre": 7,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI3822": {
+    "titulo": "Juego Gerencial",
+    "codigo": "ADMI3822",
+    "creditos": 3,
+    "semestre": 8,
+    "prerrequisitos": ["ADMI3821", "ADMI3101", "ADMI2001", "ADMI3303", "ADMI3202", "ADMI2402", "ADMI2602"],
+    "correquisito": []
+  },
+  "SABER-PRO": {
+    "titulo": "SABER PRO",
+    "codigo": "SABER-PRO",
+    "creditos": 0,
+    "semestre": 8,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ELECTIVA-1-6": {
+    "titulo": "Electivas 1-6",
+    "codigo": "ELECTIVA-1-6",
+    "creditos": 6,
+    "semestre": 8,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI2500": {
+    "titulo": "Programación",
+    "codigo": "ADMI2500",
+    "creditos": 0,
+    "semestre": 0,
+    "prerrequisitos": [],
+    "correquisito": []
+  },
+  "ADMI3821": {
+    "titulo": "Taller de Práctica Profesional",
+    "codigo": "ADMI3821",
+    "creditos": 0,
+    "semestre": 0,
+    "prerrequisitos": [],
+    "correquisito": []
+  }
+}
