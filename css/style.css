@@ -1,79 +1,97 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f0f2f5;
-    color: #333;
+    background-color: #fce4ec; /* Rosa claro de fondo */
+    color: #4a4a4a;
 }
 
 .header-container {
     text-align: center;
-    padding: 20px;
-    background-color: #1a237e;
+    padding: 30px 20px;
+    background-color: #f8bbd0; /* Rosa un poco más oscuro para el encabezado */
     color: white;
     border-radius: 10px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header-title {
-    font-size: 2.5em;
+    font-size: 2.8em;
     margin: 0;
     font-weight: 300;
 }
 
 .header-subtitle {
     font-style: italic;
-    font-size: 1.1em;
-    margin: 10px 0 0;
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #fcfcfc;
 }
 
 .pensum-container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: auto repeat(4, 1fr);
-    gap: 10px;
-    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1400px;
     margin: 0 auto;
+}
+
+.semestre {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .semestre-titulo {
     text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #4a4a4a;
-    padding: 10px 0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #880e4f; /* Rosa oscuro para los títulos */
+    border-bottom: 2px solid #f8bbd0;
+    padding-bottom: 10px;
 }
 
 .materia {
-    padding: 15px 5px;
+    background-color: #f48fb1; /* Rosa medio para las materias */
     color: white;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 8px;
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border 0.2s;
-    font-size: 0.9em;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border 0.2s;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+}
+
+.materia-codigo {
+    font-size: 0.8em;
+    font-weight: normal;
+    opacity: 0.8;
 }
 
 .materia:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Colores de los bloques de materia */
-.materia.azul { background-color: #007bff; }
-.materia.naranja { background-color: #fd7e14; }
-.materia.verde { background-color: #28a745; }
-.materia.gris { background-color: #6c757d; }
-.materia.morado { background-color: #6610f2; }
-
-/* Estilo para materias completadas (tachadas) */
+/* Estilo para materias completadas */
 .materia.completed {
-    background-color: #9e9e9e !important;
+    background-color: #e0e0e0 !important;
+    color: #888;
     text-decoration: line-through;
-    opacity: 0.7;
+    opacity: 0.8;
     box-shadow: none;
+    cursor: default;
     pointer-events: none;
 }
 .materia.completed:hover {
@@ -81,14 +99,22 @@ body {
     box-shadow: none;
 }
 
-/* Estilo para materias disponibles (resaltadas) */
+/* Estilo para materias disponibles (prerrequisitos completos) */
 .materia.available {
-    border: 3px solid #ffc107; /* Borde amarillo para resaltar */
-    box-shadow: 0 0 10px #ffc107;
+    border: 3px solid #66bb6a; /* Borde verde para indicar que está disponible */
+    box-shadow: 0 0 10px #66bb6a;
 }
 .materia.available:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 10px #ffc107;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 0 10px #66bb6a;
+}
+
+/* Estilos para requisitos especiales */
+.materia.requisito {
+    background-color: #fff3e0; /* Color crema suave para requisitos */
+    color: #d84315;
+    font-size: 0.9em;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos del Modal */
@@ -130,7 +156,8 @@ body {
 }
 
 #modal-titulo {
-    color: #1a237e;
-    border-bottom: 2px solid #e0e0e0;
+    color: #880e4f;
+    border-bottom: 2px solid #f8bbd0;
     padding-bottom: 10px;
+    margin-top: 0;
 }
